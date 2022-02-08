@@ -14,10 +14,11 @@ import { attributeResource } from "./domains/attributes/resource"
 import arabicMessages from "./config/ar"
 import { attributeTermsResource } from "./domains/attributes-terms/resource"
 import { guestOrderResources } from "./domains/guest-orders/resource"
-import { MonetizationOn, Money } from "@material-ui/icons"
+import { Bookmarks, MonetizationOn, Money } from "@material-ui/icons"
 import { theme } from "./layout/theme"
 import { RTL } from "./layout/RTL"
 import "./App.css"
+import { categoriesResources } from "./roles/admin/categories/resource"
 // import { create } from "jss";
 // import rtl from "jss-rtl";
 // import { jssPreset, StylesProvider } from "@material-ui/core/styles";
@@ -53,9 +54,15 @@ const App = function () {
       >
         <Resource
           icon={Style}
-          name="attributes"
-          options={{ label: "السمات" }}
-          {...attributeResource}
+          name="categories"
+          options={{ label: "الأقسام" }}
+          {...categoriesResources}
+        />
+        <Resource
+          icon={Bookmarks}
+          name="brands"
+          options={{ label: "البراندات" }}
+          {...categoriesResources}
         />
       </Admin>
     </RTL>
