@@ -43,9 +43,9 @@ const MyAppBar = (props) => {
         className={classes.title}
         id="react-admin-title"
       />
-      <Typography style={{ textAlign: "center", flex: 1 }}>
-        dropshipping sa
-      </Typography>
+      {/*<Typography style={{ textAlign: "center", flex: 1 }}>*/}
+      {/*  /!*dropshipping sa*!/*/}
+      {/*</Typography>*/}
       <div className={classes.spacer}>
         <IconButton onClick={purgeCache} color="inherit">
           <DeleteIcon />

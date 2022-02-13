@@ -1,17 +1,14 @@
-import * as React from "react"
-import { Card, CardHeader, CardContent } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
+import { MobileGridProps } from "../../../../../types"
+import { Card, CardContent, CardHeader } from "@material-ui/core"
 import {
+  BooleanField,
   DateField,
   EditButton,
   NumberField,
   TextField,
-  BooleanField,
-  useTranslate,
-  RecordMap,
-  Identifier,
-  Record,
 } from "react-admin"
+import { makeStyles } from "@material-ui/core/styles"
+import { MobileFields } from "../../../../../components/MobileFields"
 
 const useListStyles = makeStyles((theme) => ({
   card: {
@@ -35,15 +32,8 @@ const useListStyles = makeStyles((theme) => ({
   },
 }))
 
-interface MobileGridProps {
-  ids?: Identifier[]
-  data?: RecordMap<Record>
-  basePath?: string
-}
-
-export const MobileGrid = (props: MobileGridProps) => {
+export const ProductsMobileGrid = (props: MobileGridProps) => {
   const { ids, data, basePath } = props
-  const translate = useTranslate()
   const classes = useListStyles()
 
   if (!ids || !data || !basePath) {
@@ -57,9 +47,7 @@ export const MobileGrid = (props: MobileGridProps) => {
           <CardHeader
             title={
               <div className={classes.cardTitleContent}>
-                <span>
-                  المعرف: <TextField record={data[id]} source="id" />
-                </span>
+                <h4>المعرف: {id}</h4>
                 <EditButton
                   resource="commands"
                   basePath={basePath}
@@ -69,9 +57,7 @@ export const MobileGrid = (props: MobileGridProps) => {
             }
           />
           <CardContent className={classes.cardContent}>
-            <span className={classes.cardContentRow}>
-              {"الإسم: "} <TextField record={data[id]} source="name" />
-            </span>
+            <MobileFields fields={data[id]} id={id} />
           </CardContent>
         </Card>
       ))}

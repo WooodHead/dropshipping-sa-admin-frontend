@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+import { Identifier, Record, RecordMap } from "react-admin"
+
 export enum BannerRef {
   category = "category",
   product = "product",
@@ -277,4 +279,10 @@ export interface Attribute {
   type: AttributeType
 
   terms: AttributeTerm[]
+}
+
+export interface MobileGridProps {
+  ids?: Identifier[]
+  data?: RecordMap<Record>
+  basePath?: string
 }

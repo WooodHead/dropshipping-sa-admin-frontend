@@ -9,10 +9,8 @@ import {
   TextField,
   BooleanField,
   useTranslate,
-  RecordMap,
-  Identifier,
-  Record,
 } from "react-admin"
+import { MobileGridProps } from "../../../../types"
 
 const useListStyles = makeStyles((theme) => ({
   card: {
@@ -36,15 +34,8 @@ const useListStyles = makeStyles((theme) => ({
   },
 }))
 
-interface MobileGridProps {
-  ids?: Identifier[]
-  data?: RecordMap<Record>
-  basePath?: string
-}
-
 export const MobileGrid = (props: MobileGridProps) => {
   const { ids, data, basePath } = props
-  const translate = useTranslate()
   const classes = useListStyles()
 
   if (!ids || !data || !basePath) {

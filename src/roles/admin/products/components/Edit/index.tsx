@@ -14,11 +14,11 @@ import {
 } from "react-admin"
 import RichTextInput from "ra-input-rich-text"
 
-import { Photo, Product } from "../../../../types"
 import Avatar from "@material-ui/core/Avatar"
 import { Close } from "@material-ui/icons"
 import Axios from "axios"
-import { API_URL } from "../../../../config/constants"
+import { Photo, Product } from "../../../../../types"
+import { API_URL } from "../../../../../config/constants"
 
 const RenderImage: FC<FieldProps<any>> = ({ record, source }) => {
   if (!record) {

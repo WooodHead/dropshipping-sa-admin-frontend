@@ -1,9 +1,9 @@
 import { ProductsList } from "./components/List"
-import { GuestOrderShow } from "./components/Show"
-import { ProductEdit } from "./components/Edit"
+import { CreateProduct } from "./components/Create"
 
 export const productResources = {
   list: ProductsList,
+  create: CreateProduct,
   // show: GuestOrderShow,
-  edit: ProductEdit,
+  // edit: ProductEdit,
 }
