@@ -11,6 +11,8 @@ import {
   useDataProvider,
   useEditController,
   ImageField,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin"
 import RichTextInput from "ra-input-rich-text"
 
@@ -37,7 +39,7 @@ const RenderImage: FC<FieldProps<any>> = ({ record, source }) => {
 }
 
 const Image: FC<FieldProps<Product>> = ({ record }) => {
-  const [photos, setPhotos] = useState<Photo[] | undefined>(record?.photos)
+  const [photos, setPhotos] = useState<Photo[]>(record?.photos || [])
   const dataProvider = useDataProvider()
   if (!photos) {
     return <div />
@@ -54,23 +56,25 @@ const Image: FC<FieldProps<Product>> = ({ record }) => {
     if (record?.id) {
       const form = new FormData()
       form.append("file", file)
-      form.append("productId", String(record.externalId))
+      form.append("productId", String(record.id))
       const { data } = await Axios.post(`${API_URL}/photos`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      setPhotos([...photos, data])
+      setPhotos((old) => [...old, data])
     }
   }
 
   const uploadMany = async (files: File[]) => {
-    files.map(async (file) => {
-      if (file instanceof File) {
-        return uploadImage(file)
-      }
-    })
+    await Promise.all(
+      files.map(async (file) => {
+        if (file instanceof File) {
+          await uploadImage(file)
+        }
+      })
+    )
   }
 
   return (
@@ -85,9 +89,8 @@ const Image: FC<FieldProps<Product>> = ({ record }) => {
         onChange={uploadMany}
         multiple
         source="none"
-        label="Related pictures"
+        label="صور المنتج"
         accept="image/*"
-        placeholder={<p>Drop your file here</p>}
       >
         <div />
         {/* <ImageField source="src" title="title"/> */}
@@ -142,22 +145,61 @@ export const ProductEdit = (props) => {
   return (
     <Edit {...props}>
       <TabbedForm>
-        <FormTab label="Details">
+        <FormTab label="بيانات المنتج">
+          <TextInput source="name" label="إسم المنتج" fullWidth multiline />
+          <NumberInput source="price" label="سعر البيع للمستخدم" fullWidth />
+          <NumberInput
+            source="vendorPrice"
+            label="السعر الخاص بالمورد"
+            fullWidth
+          />
+          <NumberInput source="vat" label="ضريبة القيمة المضافة" fullWidth />
+          <TextInput source="sku" label="كود المنتج sku" fullWidth />
+          <TextInput source="slug" label="رابط المنتج" fullWidth />
+          <NumberInput
+            source="stockCount"
+            label="عدد القطع المتوفرة بالمخزون"
+            fullWidth
+          />
+          <BooleanInput source="isDeleted" label="المنتج محذوف" />
+          <BooleanInput source="isActive" label="نشط" />
+          <ReferenceInput
+            label="المورد"
+            source="vendorId"
+            reference="users"
+            fullWidth
+          >
+            <SelectInput source="name" optionText="name" />
+          </ReferenceInput>
+          <TextInput
+            multiline
+            fullWidth
+            rows={5}
+            source="description"
+            label="وصف المنتج"
+          />
+        </FormTab>
+        <FormTab label="الاقسام والبراندات" path="category-brands">
+          <ReferenceInput
+            label="القسم"
+            source="categoryId"
+            reference="categories"
+          >
+            <SelectInput source="name" optionText="name" />
+          </ReferenceInput>
+          <ReferenceInput label="البراند" source="brandId" reference="brands">
+            <SelectInput source="name" optionText="name" />
+          </ReferenceInput>
+        </FormTab>
+        <FormTab label="صور المنتج" path="photos">
           <ImageInput
             source=""
             onChange={changeThumb}
-            label="Thumbnail"
+            label="صورة المنتج الرئيسية"
             accept="image/*"
           >
-            <ImageField source="productPicture" title="title" />
+            <ImageField source="thumbnail" title="title" />
           </ImageInput>
-
-          <TextInput source="productName" fullWidth multiline />
-          <NumberInput source="productPrice" fullWidth />
-          <BooleanInput source="isDeleted" />
-          <TextInput multiline fullWidth source="productDescription" />
-        </FormTab>
-        <FormTab label="Photos" path="photos">
           <Image source="photos" />
         </FormTab>
       </TabbedForm>

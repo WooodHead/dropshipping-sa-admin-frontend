@@ -49,7 +49,7 @@ const useListStyles = makeStyles({
 
 const GuestOrderFilter: FC = (props) => (
   <Filter {...props}>
-    <TextInput label="Product Name" source="productName" alwaysOn />
+    <TextInput label="اسم المنتج" source="productName" alwaysOn />
   </Filter>
 )
 
