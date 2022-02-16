@@ -36,6 +36,10 @@ export const translatorKeysService: TranslatorKeysService = {
     translation: "ممسوح",
     type: "boolean",
   },
+  isActive: {
+    translation: "نشط",
+    type: "boolean",
+  },
   category: {
     translation: "القسم",
     type: "object",

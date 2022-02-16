@@ -212,7 +212,8 @@ export const CreateProduct = (props) => {
             label="عدد القطع المتوفرة بالمخزون"
             fullWidth
           />
-          <BooleanInput source="isDeleted" label="جعل المنتج غير متاح" />
+          <BooleanInput source="isDeleted" label="المنتج محذوف" />
+          <BooleanInput source="isActive" label="نشط" />
           <ReferenceInput
             label="المورد"
             source="vendorId"

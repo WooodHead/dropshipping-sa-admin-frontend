@@ -73,32 +73,50 @@ export const ProductsList: FC<DatagridProps> = (props) => {
       perPage={25}
     >
       <Datagrid rowClick="edit">
-        <TextField source="id" />
-        {/*<FunctionField*/}
-        {/*  label="Available"*/}
-        {/*  render={(record) => (*/}
-        {/*    <Avatar*/}
-        {/*      src={`${record.productPicture}`}*/}
-        {/*      style={{ width: 50, height: 50 }}*/}
-        {/*    />*/}
-        {/*  )}*/}
-        {/*/>*/}
-        {/*<TextField source="productName" cellClassName={classes.comment} />*/}
-        {/*<TextField source="productPrice" />*/}
-        {/*<TextField source="orderCount" />*/}
-        {/*<FunctionField*/}
-        {/*  label="Available"*/}
-        {/*  render={(record) =>*/}
-        {/*    record.isAvailable === "available" ? (*/}
-        {/*      <Chip label="Available" style={{ backgroundColor: "#4CAF50" }} />*/}
-        {/*    ) : (*/}
-        {/*      <Chip label="Out Stock" style={{ backgroundColor: "#f44336" }} />*/}
-        {/*    )*/}
-        {/*  }*/}
-        {/*/>*/}
-        {/*<BooleanField source="isDeleted" />*/}
-        {/*<BooleanField source="inStock" />*/}
-        <DateField source="createdAt" />
+        <TextField source="id" label="المعرف" />
+        <FunctionField
+          label="الصورة"
+          render={(record) => (
+            <Avatar
+              src={`${record.thumbnail}`}
+              style={{ width: 50, height: 50 }}
+            />
+          )}
+        />
+        <TextField
+          source="name"
+          label="اسم المنتج"
+          cellClassName={classes.comment}
+        />
+        <TextField source="stockCount" label="المخزون" />
+        <TextField source="price" label="سعر المنتج" />
+        <TextField source="vendorPrice" label="سعر المورد" />
+        <FunctionField
+          label="نشط"
+          render={(record) =>
+            record.isActive ? (
+              <Chip label="نشط" style={{ backgroundColor: "#4CAF50" }} />
+            ) : (
+              <Chip label="غير نشط" style={{ backgroundColor: "#f44336" }} />
+            )
+          }
+        />
+        <FunctionField
+          label="ممسوح"
+          render={(record) =>
+            record.isDeleted ? (
+              <Chip label="ممسوح" style={{ backgroundColor: "#f44336" }} />
+            ) : (
+              <Chip label="غير ممسوح" style={{ backgroundColor: "#4CAF50" }} />
+            )
+          }
+        />
+        <TextField source="sku" label="رمز sku" />
+        <TextField source="category.name" label="القسم" />
+        <TextField source="vendor.name" label="المورد" />
+        <TextField source="brand.name" label="البراند" />
+
+        <DateField source="createdAt" label="تاريخ الإنشاء" />
       </Datagrid>
     </List>
   )
