@@ -1,4 +1,4 @@
-import React, { cloneElement, FC } from "react"
+import React, { FC } from "react"
 import {
   Datagrid,
   List,
@@ -7,7 +7,6 @@ import {
   Pagination,
   FunctionField,
   Filter,
-  BooleanField,
   TextInput,
   DatagridProps,
 } from "react-admin"
@@ -15,7 +14,6 @@ import Chip from "@material-ui/core/Chip"
 import Avatar from "@material-ui/core/Avatar"
 import { makeStyles } from "@material-ui/core/styles"
 import { Theme, useMediaQuery } from "@material-ui/core"
-import { MobileGrid } from "../../../../../domains/attributes/components/MobileGrid"
 import { ProductsMobileGrid } from "./ProductsMobileGrid"
 
 const PostPagination = (props) => (
