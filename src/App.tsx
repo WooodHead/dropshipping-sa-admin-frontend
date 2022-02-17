@@ -6,12 +6,19 @@ import MyLayout from "./layout/Layout"
 import { authProvider } from "./config/auth.provider"
 import { API_URL } from "./config/constants"
 import arabicMessages from "./config/ar"
-import { Bookmarks, LocalMall, Style, VerifiedUser } from "@material-ui/icons"
+import {
+  Bookmarks,
+  LocalMall,
+  Style,
+  VerifiedUser,
+  Assignment,
+} from "@material-ui/icons"
 import { theme } from "./layout/theme"
 import { RTL } from "./layout/RTL"
 import "./App.css"
 import { categoriesResources } from "./roles/admin/categories/resource"
 import { productResources } from "./roles/admin/products/resource"
+import { packagesResource } from "./roles/admin/packages/resource"
 // import { create } from "jss";
 // import rtl from "jss-rtl";
 // import { jssPreset, StylesProvider } from "@material-ui/core/styles";
@@ -66,6 +73,12 @@ const App = function () {
           icon={VerifiedUser}
           name="users"
           options={{ label: "المستخدمين" }}
+        />
+        <Resource
+          icon={Assignment}
+          name="packages"
+          options={{ label: "الباقات" }}
+          {...packagesResource}
         />
       </Admin>
     </RTL>

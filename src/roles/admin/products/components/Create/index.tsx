@@ -17,6 +17,7 @@ import {
   useNotify,
   useRefresh,
   useRedirect,
+  required,
 } from "react-admin"
 import RichTextInput from "ra-input-rich-text"
 
@@ -197,30 +198,67 @@ export const CreateProduct = (props) => {
     <Create {...props} onSuccess={onSuccess} transform={transform}>
       <TabbedForm>
         <FormTab label="بيانات المنتج">
-          <TextInput source="name" label="إسم المنتج" fullWidth multiline />
-          <NumberInput source="price" label="سعر البيع للمستخدم" fullWidth />
+          <TextInput
+            source="name"
+            label="إسم المنتج"
+            fullWidth
+            multiline
+            validate={required()}
+          />
+          <NumberInput
+            source="price"
+            label="سعر البيع للمستخدم"
+            fullWidth
+            validate={required()}
+          />
           <NumberInput
             source="vendorPrice"
             label="السعر الخاص بالمورد"
             fullWidth
+            validate={required()}
           />
-          <NumberInput source="vat" label="ضريبة القيمة المضافة" fullWidth />
-          <TextInput source="sku" label="كود المنتج sku" fullWidth />
-          <TextInput source="slug" label="رابط المنتج" fullWidth />
+          <NumberInput
+            source="vat"
+            label="ضريبة القيمة المضافة"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            source="sku"
+            label="كود المنتج sku"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            source="slug"
+            label="رابط المنتج"
+            fullWidth
+            validate={required()}
+          />
           <NumberInput
             source="stockCount"
             label="عدد القطع المتوفرة بالمخزون"
             fullWidth
+            validate={required()}
           />
-          <BooleanInput source="isDeleted" label="المنتج محذوف" />
-          <BooleanInput source="isActive" label="نشط" />
+          <BooleanInput
+            source="isDeleted"
+            label="المنتج محذوف"
+            defaultValue={false}
+          />
+          <BooleanInput source="isActive" label="نشط" defaultValue={false} />
           <ReferenceInput
             label="المورد"
             source="vendorId"
             reference="users"
+            validate={required()}
             fullWidth
           >
-            <SelectInput source="name" optionText="name" />
+            <SelectInput
+              source="name"
+              optionText="name"
+              validate={required()}
+            />
           </ReferenceInput>
           <TextInput
             multiline
@@ -228,6 +266,7 @@ export const CreateProduct = (props) => {
             rows={5}
             source="description"
             label="وصف المنتج"
+            validate={required()}
           />
         </FormTab>
         <FormTab label="الاقسام والبراندات" path="category-brands">
@@ -235,11 +274,21 @@ export const CreateProduct = (props) => {
             label="القسم"
             source="categoryId"
             reference="categories"
+            validate={required()}
           >
-            <SelectInput source="name" optionText="name" />
+            <SelectInput source="name" optionText="name" required />
           </ReferenceInput>
-          <ReferenceInput label="البراند" source="brandId" reference="brands">
-            <SelectInput source="name" optionText="name" />
+          <ReferenceInput
+            label="البراند"
+            source="brandId"
+            reference="brands"
+            validate={required()}
+          >
+            <SelectInput
+              source="name"
+              optionText="name"
+              validate={required()}
+            />
           </ReferenceInput>
         </FormTab>
         <FormTab label="صور المنتج" path="photos">
@@ -250,6 +299,7 @@ export const CreateProduct = (props) => {
             label="صورة المنتج الرئيسية"
             accept="image/*"
             placeholder={<p>برجاء رفع صورة المنتج الرئيسية هنا</p>}
+            validate={required()}
           >
             <ImageField source="" />
           </ImageInput>

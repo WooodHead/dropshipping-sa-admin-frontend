@@ -52,7 +52,7 @@ const GuestOrderFilter: FC = (props) => (
 )
 
 export const ProductsList: FC<DatagridProps> = (props) => {
-  const isXSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down("xs"))
+  const isXSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down("sm"))
 
   const classes = useListStyles()
   if (isXSmall) {

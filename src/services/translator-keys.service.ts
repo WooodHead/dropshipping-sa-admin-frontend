@@ -19,6 +19,10 @@ export const translatorKeysService: TranslatorKeysService = {
     translation: "الوصف",
     type: "number",
   },
+  maxImportProducts: {
+    translation: "عدد المنتجات التي يمكن ان يستوردها",
+    type: "number",
+  },
   sku: {
     translation: "رمز sku",
     type: "string",
@@ -38,6 +42,22 @@ export const translatorKeysService: TranslatorKeysService = {
   },
   isActive: {
     translation: "نشط",
+    type: "boolean",
+  },
+  canSeeProducts: {
+    translation: "هل يستطيع المستخدم مشاهدة المنتجات",
+    type: "boolean",
+  },
+  canSellProducts: {
+    translation: "هل يستطيع المستخدم بيع المنتجات",
+    type: "boolean",
+  },
+  emailSupport: {
+    translation: "الدعم عبر البريد",
+    type: "boolean",
+  },
+  chatSupport: {
+    translation: "الدعم عبر الشات",
     type: "boolean",
   },
   category: {
