@@ -286,3 +286,9 @@ export interface MobileGridProps {
   data?: RecordMap<Record>
   basePath?: string
 }
+export enum UserRoles {
+  ADMIN = "admin",
+  MODERATOR = "moderator",
+  SUPPLIER = "supplier",
+  CLIENT = "client",
+}
