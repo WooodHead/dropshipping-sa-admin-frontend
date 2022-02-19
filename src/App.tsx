@@ -13,6 +13,7 @@ import {
   VerifiedUser,
   Assignment,
   SupervisedUserCircle,
+  People,
 } from "@material-ui/icons"
 import { theme } from "./layout/theme"
 import { RTL } from "./layout/RTL"
@@ -22,6 +23,7 @@ import { productResources } from "./roles/admin/products/resource"
 import { packagesResource } from "./roles/admin/packages/resource"
 import { apiProvider } from "./config/api.provider"
 import { moderatorsResources } from "./roles/admin/moderators/resource"
+import { usersResources } from "./roles/admin/users/resource"
 // import { create } from "jss";
 // import rtl from "jss-rtl";
 // import { jssPreset, StylesProvider } from "@material-ui/core/styles";
@@ -72,11 +74,7 @@ const App = function () {
           options={{ label: "المنتجات" }}
           {...productResources}
         />
-        <Resource
-          icon={VerifiedUser}
-          name="users"
-          options={{ label: "المستخدمين" }}
-        />
+
         <Resource
           icon={Assignment}
           name="packages"
@@ -88,6 +86,12 @@ const App = function () {
           name="moderators"
           options={{ label: "المديرين" }}
           {...moderatorsResources}
+        />
+        <Resource
+          icon={People}
+          name="users"
+          options={{ label: "المستخدمين" }}
+          {...usersResources}
         />
       </Admin>
     </RTL>
