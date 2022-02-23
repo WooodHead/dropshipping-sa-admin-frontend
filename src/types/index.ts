@@ -286,9 +286,21 @@ export interface MobileGridProps {
   data?: RecordMap<Record>
   basePath?: string
 }
+
 export enum UserRoles {
   ADMIN = "admin",
   MODERATOR = "moderator",
   SUPPLIER = "supplier",
   CLIENT = "client",
+}
+
+export enum TicketTypes {
+  starterGuide = "starterGuide",
+  subscriptionsAndPrices = "subscriptionsAndPrices",
+  accountSettings = "accountSettings",
+  productsApi = "productsApi",
+  payments = "payments",
+  technology = "technology",
+  refund = "refund",
+  topUp = "topUp",
 }

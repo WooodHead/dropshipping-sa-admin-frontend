@@ -1,3 +1,5 @@
+import { TicketTypes } from "../types"
+
 export const translatorKeysService: TranslatorKeysService = {
   name: {
     translation: "الاسم",
@@ -28,6 +30,11 @@ export const translatorKeysService: TranslatorKeysService = {
     type: "string",
   },
 
+  subject: {
+    translation: "العنوان",
+    type: "string",
+  },
+
   thumbnail: {
     translation: "الصورة المصغرة",
     type: "image",
@@ -38,6 +45,10 @@ export const translatorKeysService: TranslatorKeysService = {
   },
   isDeleted: {
     translation: "ممسوح",
+    type: "boolean",
+  },
+  isOpen: {
+    translation: "هل تم الحل",
     type: "boolean",
   },
   isActive: {
@@ -89,4 +100,15 @@ export interface TranslatableField {
   translation: string
   type: "string" | "number" | "object" | "date" | "boolean" | "image"
   nameField?: string
+}
+
+export const ticketsTypeTranslator = {
+  [TicketTypes.starterGuide]: "دليلك للبداية",
+  [TicketTypes.subscriptionsAndPrices]: "الاشتراك والاسعار",
+  [TicketTypes.accountSettings]: "إعدادت الحساب",
+  [TicketTypes.productsApi]: "ربط المتجر والمنتجات",
+  [TicketTypes.payments]: "الدفع (المحفظة / التحويل)",
+  [TicketTypes.technology]: "مشاكل تقنية",
+  [TicketTypes.refund]: "استرجاع مبلغ من المحفظة",
+  [TicketTypes.topUp]: "شحن الرصيد",
 }

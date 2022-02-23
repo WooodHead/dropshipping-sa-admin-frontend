@@ -14,6 +14,7 @@ import {
   Assignment,
   SupervisedUserCircle,
   People,
+  Help,
 } from "@material-ui/icons"
 import { theme } from "./layout/theme"
 import { RTL } from "./layout/RTL"
@@ -24,6 +25,7 @@ import { packagesResource } from "./roles/admin/packages/resource"
 import { apiProvider } from "./config/api.provider"
 import { moderatorsResources } from "./roles/admin/moderators/resource"
 import { usersResources } from "./roles/admin/users/resource"
+import { ticketsResource } from "./roles/admin/tickets/resource"
 // import { create } from "jss";
 // import rtl from "jss-rtl";
 // import { jssPreset, StylesProvider } from "@material-ui/core/styles";
@@ -92,6 +94,12 @@ const App = function () {
           name="users"
           options={{ label: "المستخدمين" }}
           {...usersResources}
+        />
+        <Resource
+          icon={Help}
+          name="tickets"
+          options={{ label: "تذاكر الدعم" }}
+          {...ticketsResource}
         />
       </Admin>
     </RTL>

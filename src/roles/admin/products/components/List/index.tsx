@@ -9,6 +9,7 @@ import {
   Filter,
   TextInput,
   DatagridProps,
+  BooleanField,
 } from "react-admin"
 import Chip from "@material-ui/core/Chip"
 import Avatar from "@material-ui/core/Avatar"
@@ -89,26 +90,28 @@ export const ProductsList: FC<DatagridProps> = (props) => {
         <TextField source="stockCount" label="المخزون" />
         <TextField source="price" label="سعر المنتج" />
         <TextField source="vendorPrice" label="سعر المورد" />
-        <FunctionField
-          label="نشط"
-          render={(record) =>
-            record.isActive ? (
-              <Chip label="نشط" style={{ backgroundColor: "#4CAF50" }} />
-            ) : (
-              <Chip label="غير نشط" style={{ backgroundColor: "#f44336" }} />
-            )
-          }
-        />
-        <FunctionField
-          label="ممسوح"
-          render={(record) =>
-            record.isDeleted ? (
-              <Chip label="ممسوح" style={{ backgroundColor: "#f44336" }} />
-            ) : (
-              <Chip label="غير ممسوح" style={{ backgroundColor: "#4CAF50" }} />
-            )
-          }
-        />
+        <BooleanField source="isActive" label="نشط" />
+        <BooleanField source="isDeleted" label="ممسوع" />
+        {/*<FunctionField*/}
+        {/*  label="نشط"*/}
+        {/*  render={(record) =>*/}
+        {/*    record.isActive ? (*/}
+        {/*      <Chip label="نشط" style={{ backgroundColor: "#4CAF50" }} />*/}
+        {/*    ) : (*/}
+        {/*      <Chip label="غير نشط" style={{ backgroundColor: "#f44336" }} />*/}
+        {/*    )*/}
+        {/*  }*/}
+        {/*/>*/}
+        {/*<FunctionField*/}
+        {/*  label="ممسوح"*/}
+        {/*  render={(record) =>*/}
+        {/*    record.isDeleted ? (*/}
+        {/*      <Chip label="ممسوح" style={{ backgroundColor: "#f44336" }} />*/}
+        {/*    ) : (*/}
+        {/*      <Chip label="غير ممسوح" style={{ backgroundColor: "#4CAF50" }} />*/}
+        {/*    )*/}
+        {/*  }*/}
+        {/*/>*/}
         <TextField source="sku" label="رمز sku" />
         <TextField source="category.name" label="القسم" />
         <TextField source="vendor.name" label="المورد" />
