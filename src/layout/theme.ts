@@ -80,5 +80,19 @@ export const theme = createTheme({
         border: "none",
       },
     },
+    MuiMenuItem: {
+      root: {
+        paddingTop: 15,
+        paddingBottom: 15,
+      },
+    },
+    MuiDrawer: {
+      root: {
+        backgroundColor: "#fff",
+        borderInlineEndWidth: 1,
+        borderInlineEndColor: "#e1e1e1",
+        borderInlineEndStyle: "solid",
+      },
+    },
   },
 })
