@@ -15,6 +15,7 @@ import {
   SupervisedUserCircle,
   People,
   Help,
+  ShoppingCart,
 } from "@material-ui/icons"
 import { theme } from "./layout/theme"
 import { RTL } from "./layout/RTL"
@@ -26,6 +27,7 @@ import { apiProvider } from "./config/api.provider"
 import { moderatorsResources } from "./roles/admin/moderators/resource"
 import { usersResources } from "./roles/admin/users/resource"
 import { ticketsResource } from "./roles/admin/tickets/resource"
+import { ordersResource } from "./roles/admin/orders/resource"
 // import { create } from "jss";
 // import rtl from "jss-rtl";
 // import { jssPreset, StylesProvider } from "@material-ui/core/styles";
@@ -100,6 +102,12 @@ const App = function () {
           name="tickets"
           options={{ label: "تذاكر الدعم" }}
           {...ticketsResource}
+        />
+        <Resource
+          icon={ShoppingCart}
+          name="orders"
+          options={{ label: "الطلبات" }}
+          {...ordersResource}
         />
       </Admin>
     </RTL>

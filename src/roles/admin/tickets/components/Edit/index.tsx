@@ -37,16 +37,16 @@ export const TicketEdit = (props) => {
   )
 }
 
-const TicketTypeField: FC<FieldProps<{ type: TicketTypes; id: number }>> = ({
-  record,
-}) => {
+export const TicketTypeField: FC<
+  FieldProps<{ type: TicketTypes; id: number }> & { hideTitle?: boolean }
+> = ({ record, hideTitle = false }) => {
   if (!record) {
     return <div />
   }
 
   return (
     <div style={{ fontFamily }}>
-      <h3>نوع التذكرة:</h3>
+      {!hideTitle && <h3>نوع التذكرة:</h3>}
       <p>{ticketsTypeTranslator[record.type]}</p>
     </div>
   )

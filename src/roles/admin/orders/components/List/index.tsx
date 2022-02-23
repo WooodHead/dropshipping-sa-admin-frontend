@@ -13,11 +13,17 @@ import {
   ArrayField,
   DatagridProps,
   NumberField,
+  FieldProps,
 } from "react-admin"
 import { makeStyles } from "@material-ui/core/styles"
 import { Theme, useMediaQuery } from "@material-ui/core"
 import { MobileGrid } from "../MobileGrid"
-import { TicketTypeField } from "../Edit"
+import { DropOrderStatus, TicketTypes } from "../../../../../types"
+import { fontFamily } from "../../../../../config/constants"
+import {
+  orderStatusTranslator,
+  ticketsTypeTranslator,
+} from "../../../../../services/translator-keys.service"
 
 const PostPagination = (props) => (
   <Pagination rowsPerPageOptions={[25, 50, 100]} {...props} />
@@ -50,11 +56,11 @@ const BlacklistFilter = (props) => (
 )
 
 const filters = [
-  <NumberInput label="المعرف" source="id||eq" alwaysOn />,
-  <TextInput source="subject" label="العنوان" alwaysOn />,
+  // <NumberInput label="المعرف" source="id||eq" alwaysOn />,
+  <TextInput source="name" label="الاسم" alwaysOn />,
 ]
 
-export const TicketList: FC<DatagridProps> = (props) => {
+export const OrderList: FC<DatagridProps> = (props) => {
   const isXSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down("sm"))
 
   if (isXSmall) {
@@ -80,11 +86,26 @@ export const TicketList: FC<DatagridProps> = (props) => {
     >
       <Datagrid rowClick="edit" optimized>
         <TextField source="id" label="المعرف" />
-        <TextField source="subject" label="العنوان" />
-        <TextField source="user.name" label="اسم المستخدم" />
-        <BooleanField source="isOpen" label="هل تم حل التذكرة" />
-        <TicketTypeField hideTitle source="type" label="نوع التذكرة" />
+        <TextField source="receiverName" label="اسم المستلم" />
+        <TextField source="totalCost" label="اجمالي الطلب" />
+        <TextField source="deliveryCost" label="تكلفة الشحن" />
+        <OrderTypeField hideTitle source="status" label="حالة الطلب" />
       </Datagrid>
     </List>
+  )
+}
+
+export const OrderTypeField: FC<
+  FieldProps<{ status: DropOrderStatus; id: number }> & { hideTitle?: boolean }
+> = ({ record, hideTitle = false }) => {
+  if (!record) {
+    return <div />
+  }
+
+  return (
+    <div style={{ fontFamily }}>
+      {!hideTitle && <h3>حالة الطلب:</h3>}
+      <p>{orderStatusTranslator[record.status]}</p>
+    </div>
   )
 }

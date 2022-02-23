@@ -1,5 +1,6 @@
 import { FC, ReactElement } from "react"
 import {
+  orderStatusTranslator,
   TranslatableField,
   translatorKeysService,
 } from "../../services/translator-keys.service"
@@ -13,6 +14,9 @@ import {
   Record,
 } from "react-admin"
 import { makeStyles } from "@material-ui/core/styles"
+import { OrderTypeField } from "../../roles/admin/orders/components/List"
+import { DropOrderStatus, OrderStatus } from "../../types"
+import { TicketTypeField } from "../../roles/admin/tickets/components/Edit"
 
 const useListStyles = makeStyles((theme) => ({
   image: {
@@ -110,6 +114,16 @@ const Field: FC<FieldProps> = ({ field, value, k, id }) => {
           <TextField source={field.nameField} record={value as Record} />
         </div>
       )
+    case "orderStatus":
+      return (
+        <div>
+          <OrderTypeField
+            source={field.nameField}
+            record={{ status: value as DropOrderStatus, id: id as number }}
+          />
+        </div>
+      )
+
     default:
       return <div />
   }

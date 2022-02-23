@@ -304,3 +304,14 @@ export enum TicketTypes {
   refund = "refund",
   topUp = "topUp",
 }
+
+export enum DropOrderStatus {
+  PendingPaid = "PendingPaid",
+  Paid = "Paid",
+  Processing = "Processing",
+  InDelivery = "InDelivery",
+  Delivered = "Delivered",
+  Refunded = "Refunded",
+  RefundRequest = "RefundRequest",
+  Canceled = "Canceled",
+}
